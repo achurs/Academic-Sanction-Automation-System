@@ -4,9 +4,12 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
+import { db } from '../config/firebase.jsx';
+import { doc, setDoc } from 'firebase/firestore';
 function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
     const [redirect, setRedirect] = useState(false);
 
     if (redirect) {
@@ -19,6 +22,13 @@ function SignUp() {
             const user = userCredential.user;
             console.log('Signed up user:', user);
             toast.success('Signed up successfully!');
+            const userDocRef = doc(db, 'users', user.uid);
+            await setDoc(userDocRef, {
+                name: name,
+                email: email,
+                uid: user.uid,
+                role: 'student' //default role assigned to every new user
+            });
             setTimeout(() => {
                 setRedirect(true);
             }, 2000);
@@ -33,6 +43,12 @@ function SignUp() {
         <div>
             <h2>Sign Up</h2>
             <form onSubmit={handleSignUp}>
+                <input 
+                    type="text"
+                    placeholder='Name'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
                 <input
                     type="email"
                     placeholder="Email"

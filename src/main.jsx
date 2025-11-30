@@ -6,6 +6,7 @@ import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import { AuthProvider } from './components/AuthContext.jsx'
 import SignUp from './components/SignUp.jsx'
 import SignIn from './components/SignIn.jsx'
+import AdminDashboard from './components/AdminDashboard.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/" element={<App />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/adminpage" element={<AdminDashboard />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
