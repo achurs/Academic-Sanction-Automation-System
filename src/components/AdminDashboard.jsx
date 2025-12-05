@@ -42,8 +42,8 @@ function AdminDashboard() {
         ) : (
             <div id="admin-dashboard">
                 <h3>Welcome, Admin!</h3>
-                <p>Here you can manage the system settings and user accounts.</p>
-                <h4>User Management</h4>
+                <p>Here you can change the roles of the users</p>
+                <h4>Role Management</h4>
                 <table>
                     <thead>
                         <tr>
