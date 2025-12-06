@@ -3,6 +3,7 @@ import { db } from '../config/firebase.jsx';
 import { useState, useEffect } from "react";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import Compose from "./Compose.jsx";
+import DashboardView from "./DashboardView.jsx";
 
 function Home() {
     const {currentUser,logout} = useAuth();
@@ -43,7 +44,8 @@ function Home() {
         <p><strong>Email:</strong> {email}</p>
         <p><strong>UID:</strong> {uid}</p>
         <p><strong>Role:</strong> {role}</p>
-        <Compose />
+        <DashboardView passingrole={role} passingname={name}/>
+        <Compose passingrole={role} />
         <button onClick={logout}>Log Out</button>
     </div>
   );

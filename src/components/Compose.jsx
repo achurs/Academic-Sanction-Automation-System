@@ -3,11 +3,12 @@ import { useAuth } from "./AuthContext";
 import { db } from '../config/firebase.jsx';
 import { addDoc, serverTimestamp,collection } from "firebase/firestore";
 import { toast, ToastContainer } from "react-toastify";
-function Compose(){
+function Compose(props){
     const {currentUser} = useAuth();
     const [requestType, setRequestType] = useState('');
     const [description, setDescription] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { userRole } = props.passingrole ? { userRole: props.passingrole } : {};
     const handleSubmit = async (e) => {
     e.preventDefault();
     if (!description.trim() || !db) return;
@@ -19,11 +20,11 @@ function Compose(){
             requestType: requestType,
             description: description.trim(),
             status: "Pending Staff Advisor",
-            currentApprover: "Staff Advisor",
+            currentApprover: "staffAdvisor",
             submissionDate: serverTimestamp(),
             history: [{
                 action: 'Submitted',
-                role: 'Student',
+                role: 'student',
                 timestamp: new Date().toISOString(),
                 comment: 'Initial submission of request.',
             }],
@@ -38,7 +39,8 @@ function Compose(){
     } finally {
         setIsSubmitting(false);
     }};
-    return (
+    return (<>
+        {userRole === 'student' ? (
         <div>
         <h2>Compose a New Request</h2>
         <form onSubmit={handleSubmit}>
@@ -69,6 +71,11 @@ function Compose(){
         </form>
         <ToastContainer />
         </div>
+        ) : (<div>
+            <p>Only students can submit new requests.</p>
+        </div>
+        )}
+        </>
     );
 }
 export default Compose;

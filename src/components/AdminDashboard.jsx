@@ -4,7 +4,7 @@ import { doc, getDocs,collection,updateDoc } from "firebase/firestore";
 function AdminDashboard() {
     const [password, setPassword] = useState('');
     const password_value = "adminpass";
-    const predefinedRoles = ["student", "staffAdvisor", "departmentHead", "PRINCIPAL"];
+    const predefinedRoles = ["student", "staffAdvisor", "departmentHead", "principal"];
     const [users, setUsers] = useState([]);
     const fetchUsers = async () => {
         const usersCollection = collection(db, 'users');
