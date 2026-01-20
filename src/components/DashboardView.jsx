@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "./AuthContext";
+import { Outlet } from "react-router-dom";
 import { db } from '../config/firebase.jsx';
 import { collection, onSnapshot, query, where, orderBy } from "firebase/firestore";
 import { doc, updateDoc, arrayUnion, serverTimestamp } from "firebase/firestore";
@@ -181,7 +182,6 @@ const handleApprove = async (request) => {
                             <h3>{request.requestType}</h3>
                             <p>Status: <span>{request.status}</span></p>
                             <p>Submitted by: {request.studentId.substring(0, 8)}</p>
-                            {/* --- CONDITIONAL ACTION BUTTONS (The next big step!) --- */}
                             {(userRole !== 'student' && request.currentApprover === userRole) && (
                                 <div>
                                     <button onClick={() => handleApprove(request)}>
@@ -196,6 +196,7 @@ const handleApprove = async (request) => {
                     ))}
                 </div>
             )}
+            <Outlet />
         </div>
     );
 }

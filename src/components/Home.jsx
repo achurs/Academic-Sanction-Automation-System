@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import Compose from "./Compose.jsx";
 import DashboardView from "./DashboardView.jsx";
+import { Routes, Route, Navigate } from "react-router-dom";
+import NavBar from "./NavBar.jsx";
+import Pdf from "./Pdf.jsx";
 
 function Home() {
     const {currentUser,logout} = useAuth();
@@ -11,7 +14,7 @@ function Home() {
     const [role, setRole] = useState('');
     const [email, setEmail] = useState('');
     const [uid, setUid] = useState('');
-    
+
     // Fetch user details from Firestore
     const fetchUserDetails = async () => {
         const userDocRef = doc(db, 'users', currentUser.uid);
@@ -38,15 +41,18 @@ function Home() {
     }, []);
   return (
     <div>
+        <NavBar passingrole={role} passinglogout={logout} />
         <h1>Welcome to the Academic Sanction Automation System</h1>
         <h2>User Details</h2>
         <p><strong>Name:</strong> {name}</p>
         <p><strong>Email:</strong> {email}</p>
         <p><strong>UID:</strong> {uid}</p>
         <p><strong>Role:</strong> {role}</p>
-        <DashboardView passingrole={role} passingname={name}/>
-        <Compose passingrole={role} />
-        <button onClick={logout}>Log Out</button>
+        <Routes>
+            <Route path="dashboard" element={<DashboardView passingrole={role} passingname={name}/>} />
+            <Route path="compose" element={<Compose passingrole={role} />} />
+            <Route path="pdf" element={<Pdf passingcurrentuser={currentUser} />} />
+        </Routes>
     </div>
   );
 }

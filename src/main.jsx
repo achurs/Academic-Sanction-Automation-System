@@ -7,16 +7,18 @@ import { AuthProvider } from './components/AuthContext.jsx'
 import SignUp from './components/SignUp.jsx'
 import SignIn from './components/SignIn.jsx'
 import AdminDashboard from './components/AdminDashboard.jsx'
+import Home from './components/Home.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/*" element={<App />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/adminpage" element={<AdminDashboard />} />
+          <Route path="*" element={<h1>404: Page Not Found</h1>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -9,11 +9,7 @@ function App() {
   if (!currentUser) {
     return <Navigate to="/signin" />
   }
-  return (
-    <>
-      <Home />
-    </>
-  )
+  return <Home />
 }
 
 export default App

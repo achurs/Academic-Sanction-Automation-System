@@ -3,6 +3,7 @@ import { useAuth } from "./AuthContext";
 import { db } from '../config/firebase.jsx';
 import { addDoc, serverTimestamp,collection } from "firebase/firestore";
 import { toast, ToastContainer } from "react-toastify";
+import { Outlet } from "react-router-dom";
 function Compose(props){
     const {currentUser} = useAuth();
     const [requestType, setRequestType] = useState('');
@@ -70,9 +71,11 @@ function Compose(props){
             </button>
         </form>
         <ToastContainer />
+        <Outlet />
         </div>
         ) : (<div>
             <p>Only students can submit new requests.</p>
+            <Outlet />
         </div>
         )}
         </>
