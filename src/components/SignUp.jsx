@@ -7,10 +7,12 @@ import { Navigate } from 'react-router-dom';
 import { db } from '../config/firebase.jsx';
 import { doc, setDoc } from 'firebase/firestore';
 function SignUp() {
+    const DEPARTMENT = ["CSE", "BT", "MECH", "CIVIL"];
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [redirect, setRedirect] = useState(false);
+    const [department, setDepartment] = useState(DEPARTMENT[0]);
 
     if (redirect) {
         return <Navigate to="/signin" />;
@@ -27,6 +29,7 @@ function SignUp() {
                 name: name,
                 email: email,
                 uid: user.uid,
+                department: department,
                 role: 'student' //default role assigned to every new user
             });
             setTimeout(() => {
@@ -55,6 +58,14 @@ function SignUp() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
+                <label htmlFor="department">Department:</label>
+                <select value={department} onChange={(e) => setDepartment(e.target.value)}>
+                    {DEPARTMENT.map((dept) => (
+                        <option key={dept} value={dept}>
+                            {dept}
+                        </option>
+                    ))}
+                </select>
                 <input
                     type="password"
                     placeholder="Password"

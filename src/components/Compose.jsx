@@ -10,6 +10,7 @@ function Compose(props){
     const [description, setDescription] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { userRole } = props.passingrole ? { userRole: props.passingrole } : {};
+    const { userDepartment } = props.passingDepartment ? { userDepartment: props.passingDepartment } : {};
     const handleSubmit = async (e) => {
     e.preventDefault();
     if (!description.trim() || !db) return;
@@ -18,6 +19,7 @@ function Compose(props){
         const requestsCollectionRef = collection(db, 'requests');
         const newRequest = {
             studentId: currentUser.uid,
+            studentDepartment: userDepartment,
             requestType: requestType,
             description: description.trim(),
             status: "Pending Staff Advisor",

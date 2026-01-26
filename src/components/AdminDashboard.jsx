@@ -5,6 +5,7 @@ function AdminDashboard() {
     const [password, setPassword] = useState('');
     const password_value = "adminpass";
     const predefinedRoles = ["student", "staffAdvisor", "departmentHead", "principal"];
+    const predefinedDepartments = ["CSE", "BT", "MECH", "CIVIL"];
     const [users, setUsers] = useState([]);
     const fetchUsers = async () => {
         const usersCollection = collection(db, 'users');
@@ -15,6 +16,11 @@ function AdminDashboard() {
     const updateUserRole = async (uid, newRole) => {
         const userDocRef = doc(db, 'users', uid);
         await updateDoc(userDocRef, { role: newRole });
+        fetchUsers(); // Refresh the user list after updating
+    }
+    const updateUserDepartment = async (uid, newDepartment) => {
+        const userDocRef = doc(db, 'users', uid);
+        await updateDoc(userDocRef, { department: newDepartment });
         fetchUsers(); // Refresh the user list after updating
     }
     useEffect(() => {
@@ -50,6 +56,7 @@ function AdminDashboard() {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Department</th>
                             <th>Change Role</th>
                         </tr>
                     </thead>
@@ -59,6 +66,16 @@ function AdminDashboard() {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role}</td>
+                                <td>
+                                    <select
+                                        value={user.department}
+                                        onChange={(e) => updateUserDepartment(user.uid, e.target.value)}
+                                    >
+                                        {predefinedDepartments.map((dept) => (
+                                            <option key={dept} value={dept}>{dept}</option>
+                                        ))}
+                                    </select>
+                                </td>
                                 <td>
                                     <select
                                         value={user.role}

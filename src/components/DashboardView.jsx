@@ -9,6 +9,7 @@ function DashboardView(props) {
     const { currentUser } = useAuth();
     const userRole = props.passingrole || null; // Ensure it's a string or null
     const userName = props.passingname || 'User'; // Ensure it's a string
+    const userDepartment = props.passingDepartment || null;
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -124,12 +125,19 @@ const handleApprove = async (request) => {
             );
             console.log("Student query set for UID:", currentUser.uid);
 
-        } else if (userRole === 'staffAdvisor' || userRole === 'departmentHead' || userRole === 'principal') {
+        } else if (userRole === 'staffAdvisor' || userRole === 'departmentHead') {
+            q = query(
+                requestsCollectionRef,
+                where("currentApprover", "==", userRole),
+                where("studentDepartment", "==", userDepartment)
+            );
+            console.log(`Approver query set for role:${userRole}, department:${userDepartment}`);
+        } else if (userRole === 'principal') {
             q = query(
                 requestsCollectionRef,
                 where("currentApprover", "==", userRole)
             );
-            console.log("Approver query set for role:", userRole);
+            console.log("Principal query set: Accessing all pending requests.");
         } else if(userRole){
             q = query(requestsCollectionRef,where("nonexistentField","==","noValue"));
             console.log("No valid role found, empty query set.");

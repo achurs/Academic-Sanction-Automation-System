@@ -14,6 +14,7 @@ function Home() {
     const [role, setRole] = useState('');
     const [email, setEmail] = useState('');
     const [uid, setUid] = useState('');
+    const [department, setDepartment] = useState('');
 
     // Fetch user details from Firestore
     const fetchUserDetails = async () => {
@@ -24,6 +25,7 @@ function Home() {
             setName(userData.name);
             setRole(userData.role);
             setEmail(userData.email);
+            setDepartment(userData.department);
         }
     };
     const unsubscribe = onSnapshot(doc(db, 'users', currentUser.uid), (doc) => {
@@ -32,6 +34,7 @@ function Home() {
             setName(userData.name);
             setRole(userData.role);
             setEmail(userData.email);
+            setDepartment(userData.department);
         }
     });
     useEffect(() => {
@@ -48,9 +51,10 @@ function Home() {
         <p><strong>Email:</strong> {email}</p>
         <p><strong>UID:</strong> {uid}</p>
         <p><strong>Role:</strong> {role}</p>
+        <p><strong>Department:</strong> {department}</p>
         <Routes>
-            <Route path="dashboard" element={<DashboardView passingrole={role} passingname={name}/>} />
-            <Route path="compose" element={<Compose passingrole={role} />} />
+            <Route path="dashboard" element={<DashboardView passingrole={role} passingname={name} passingDepartment={department}/>} />
+            <Route path="compose" element={<Compose passingrole={role} passingDepartment={department} />} />
             <Route path="pdf" element={<Pdf passingcurrentuser={currentUser} />} />
         </Routes>
     </div>
