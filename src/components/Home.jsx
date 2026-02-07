@@ -44,7 +44,7 @@ function Home() {
     }, []);
   return (
     <div>
-        <NavBar passingrole={role} passinglogout={logout} />
+        <NavBar passingrole={role} passinglogout={logout} passingdepartment={department} />
         <h1>Welcome to the Academic Sanction Automation System</h1>
         <h2>User Details</h2>
         <p><strong>Name:</strong> {name}</p>

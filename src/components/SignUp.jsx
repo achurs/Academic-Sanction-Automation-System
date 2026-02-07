@@ -13,6 +13,7 @@ function SignUp() {
     const [name, setName] = useState('');
     const [redirect, setRedirect] = useState(false);
     const [department, setDepartment] = useState(DEPARTMENT[0]);
+    const [showPassword, setShowPassword] = useState(false);
 
     if (redirect) {
         return <Navigate to="/signin" />;
@@ -50,7 +51,10 @@ function SignUp() {
                     type="text"
                     placeholder='Name'
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => {
+                        const value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+                        setName(value);
+                    }}
                 />
                 <input
                     type="email"
@@ -67,11 +71,19 @@ function SignUp() {
                     ))}
                 </select>
                 <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={showPassword}
+                        onChange={() => setShowPassword(!showPassword)}
+                    />
+                    Show Password
+                </label>
                 <button type="submit">Sign Up</button>
             </form>
             <p>

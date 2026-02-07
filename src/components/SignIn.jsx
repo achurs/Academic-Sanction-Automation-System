@@ -8,6 +8,7 @@ function SignIn(){
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [redirect,setRedirect] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     
     if(redirect){
         return <Navigate to="/"/>
@@ -40,11 +41,20 @@ function SignIn(){
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <label htmlFor="showPassword">
+                    <input
+                        type="checkbox"
+                        id="showPassword"
+                        checked={showPassword}
+                        onChange={() => setShowPassword(!showPassword)}
+                    />
+                    Show Password
+                </label>
                 <button type="submit">Sign In</button>
             </form>
             <p>

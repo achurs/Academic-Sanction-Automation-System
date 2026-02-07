@@ -10,6 +10,7 @@ function Pdf(props) {
     const [loading, setLoading] = useState(true);
     const [error,setError] = useState(null);
     const [users, setUsers] = useState([]);
+    const [selectedStatus, setSelectedStatus] = useState('all');
 
     const fetchUsers = async() => {
         if(!passingcurrentuser || !db ){
@@ -90,6 +91,11 @@ function Pdf(props) {
         doc.save('consolidated_report.pdf');
     }
 
+    const filteredRequests = requests.filter((requests) => {
+        if(selectedStatus === 'all') return true;
+        return getOutcome(requests.status).toLowerCase() === selectedStatus
+    })
+
     useEffect(() => {
         fetchRequests();
         fetchUsers();
@@ -106,6 +112,15 @@ function Pdf(props) {
     return (
         <div>
             <h1>Consolidated Request Summary</h1>
+            <label>
+                Filter by Status:
+                <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
+                    <option value="all">All</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="pending">Pending</option>
+                </select>
+            </label>
             <table id="reportTable">
                 <thead>
                     <tr>
@@ -116,7 +131,7 @@ function Pdf(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {requests.map((request) => (
+                    {filteredRequests.map((request) => (
                         <tr key={request.id}>
                             <td>{idtoname(request.studentId)}</td>
                             <td>{request.requestType}</td>
