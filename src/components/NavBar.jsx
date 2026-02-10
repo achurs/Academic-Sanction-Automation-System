@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { db } from "../config/firebase";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
+import "../style/NavBar.css";
 function NavBar(props) {
   const { passingrole, passinglogout, passingdepartment } = props;
   // State to hold the count of pending requests
@@ -59,7 +60,7 @@ function NavBar(props) {
     <div>
       {
         length > 0 ? (
-          <div style={{ backgroundColor: 'red', color: 'white', borderRadius: '50%', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: '10px', right: '10px' }}>
+          <div id="notification">
             <NavLink to="/dashboard">{length}</NavLink>
           </div>
         ) : null
@@ -73,7 +74,7 @@ function NavBar(props) {
         })}>Home</NavLink></li>
         <li><NavLink to="/dashboard" style={({isActive}) => ({
           color: isActive ? "red" : "black"
-        })}>About</NavLink></li>
+        })}>Dashboard</NavLink></li>
         <li>
           <NavLink to="/pdf" style={({isActive}) => ({
             color: isActive ? "red" : "black"

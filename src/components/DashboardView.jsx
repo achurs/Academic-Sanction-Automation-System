@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import { db } from '../config/firebase.jsx';
 import { collection, onSnapshot, query, where, orderBy } from "firebase/firestore";
 import { doc, updateDoc, arrayUnion, serverTimestamp } from "firebase/firestore";
+import "../style/DashboardView.css";
 
 function DashboardView(props) {
     const { currentUser } = useAuth();
@@ -173,7 +174,7 @@ const handleApprove = async (request) => {
         return <div>{error}</div>;
     }
     return (
-        <div>
+        <div id="dashboard-view">
             <h2>
                 {userRole === 'student' 
                     ? `My Submissions (${userName || 'Loading...'})` 

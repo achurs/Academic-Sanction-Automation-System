@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import { db } from "../config/firebase";
 import { doc, getDocs,collection,updateDoc } from "firebase/firestore";
+import "../style/AdminDashboard.css";
 function AdminDashboard() {
     const [password, setPassword] = useState('');
     const password_value = "adminpass";
@@ -27,7 +28,7 @@ function AdminDashboard() {
         fetchUsers();
     }, []);
   return (
-    <div>
+    <div id="admin-dash">
         <h2>Admin Dashboard</h2>
         {password !== password_value ? (
             <div id="admin-login">

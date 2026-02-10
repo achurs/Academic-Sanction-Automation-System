@@ -1,0 +1,71 @@
+/* Home wrapper */
+#home {
+    min-height: 100vh;
+    background: #f5f7fb;
+    padding: 1.5rem 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Page title */
+#home > h1 {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Section title */
+#home > h2 {
+    margin-bottom: 1rem;
+    color: #444;
+}
+
+/* Make user details uniform */
+#home p {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    background: #ffffff;
+    border-radius: 6px;
+    max-width: 420px;
+}
+
+/* Fixed-width labels */
+#home p strong {
+    min-width: 100px;
+    color: #333;
+}
+
+/* Slight separation between rows */
+#home p + p {
+    margin-top: 0.6rem;
+}
+
+#user-details {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    padding: 1rem 35%;
+}
+
+/* Route views spacing */
+#home > .routes,
+#home > .dashboard,
+#home > .compose {
+    margin-top: 2rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    #home {
+        padding: 1rem;
+    }
+
+    #home > h1 {
+        font-size: 1.4rem;
+    }
+
+    #home p {
+        font-size: 0.95rem;
+    }
+}

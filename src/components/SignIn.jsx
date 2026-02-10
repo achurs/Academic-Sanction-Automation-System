@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { ToastContainer,toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
+import "../style/SignIn.css";
 function SignIn(){
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -31,7 +32,7 @@ function SignIn(){
     };
 
     return (
-        <div>
+        <div id="signin">
             <h2>Sign In</h2>
             <form onSubmit={handleSignIn}>
                 <input

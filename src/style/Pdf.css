@@ -1,0 +1,110 @@
+/* Wrapper */
+#pdf-table {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Title */
+#pdf-table h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Filter section */
+#pdf-table label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Filter select */
+#pdf-table select {
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+}
+
+#pdf-table select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Table */
+#pdf-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+/* Header */
+#pdf-table thead {
+    background: #667eea;
+    color: #ffffff;
+}
+
+#pdf-table th,
+#pdf-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#pdf-table th {
+    font-weight: bold;
+}
+
+/* Table rows */
+#pdf-table tbody tr:nth-child(even) {
+    background: #f8f9ff;
+}
+
+#pdf-table tbody tr:hover {
+    background: #eef1ff;
+}
+
+/* Outcome column emphasis */
+#pdf-table td:last-child {
+    font-weight: bold;
+}
+
+/* Export button */
+#pdf-table button {
+    display: block;
+    margin-left: auto;
+    padding: 0.6rem 1.4rem;
+    background: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#pdf-table button:hover {
+    background: #43a047;
+}
+
+/* Print / PDF friendly */
+@media print {
+    #pdf-table button,
+    #pdf-table select,
+    #pdf-table label {
+        display: none;
+    }
+
+    #pdf-table {
+        padding: 0;
+        box-shadow: none;
+    }
+}

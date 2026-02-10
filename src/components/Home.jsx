@@ -7,6 +7,7 @@ import DashboardView from "./DashboardView.jsx";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NavBar from "./NavBar.jsx";
 import Pdf from "./Pdf.jsx";
+import "../style/Home.css";
 
 function Home() {
     const {currentUser,logout} = useAuth();
@@ -43,15 +44,16 @@ function Home() {
         return () => unsubscribe();
     }, []);
   return (
-    <div>
+    <div id="home">
         <NavBar passingrole={role} passinglogout={logout} passingdepartment={department} />
         <h1>Welcome to the Academic Sanction Automation System</h1>
         <h2>User Details</h2>
+        <div id="user-details">
         <p><strong>Name:</strong> {name}</p>
         <p><strong>Email:</strong> {email}</p>
-        <p><strong>UID:</strong> {uid}</p>
         <p><strong>Role:</strong> {role}</p>
         <p><strong>Department:</strong> {department}</p>
+        </div>
         <Routes>
             <Route path="dashboard" element={<DashboardView passingrole={role} passingname={name} passingDepartment={department}/>} />
             <Route path="compose" element={<Compose passingrole={role} passingDepartment={department} />} />

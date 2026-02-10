@@ -1,0 +1,98 @@
+/* Compose wrapper */
+#compose {
+    margin-top: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Card container */
+#compose > div {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+#compose h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Form */
+#compose form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Labels */
+#compose label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+    color: #555;
+    font-weight: bold;
+}
+
+/* Select & textarea */
+#compose select,
+#compose textarea {
+    margin-top: 0.4rem;
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+    resize: vertical;
+}
+
+#compose select:focus,
+#compose textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Submit button */
+#compose button {
+    align-self: flex-end;
+    padding: 0.6rem 1.5rem;
+    background: #667eea;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#compose button:hover:not(:disabled) {
+    background: #5a67d8;
+}
+
+/* Disabled state */
+#compose button:disabled {
+    background: #b3b8f0;
+    cursor: not-allowed;
+}
+
+/* Non-student message */
+#compose p {
+    text-align: center;
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #compose > div {
+        padding: 1.5rem;
+    }
+
+    #compose button {
+        width: 100%;
+        align-self: stretch;
+    }
+}

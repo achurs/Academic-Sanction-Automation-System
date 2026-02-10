@@ -4,6 +4,7 @@ import { db } from '../config/firebase.jsx';
 import { addDoc, serverTimestamp,collection } from "firebase/firestore";
 import { toast, ToastContainer } from "react-toastify";
 import { Outlet } from "react-router-dom";
+import "../style/Compose.css";
 function Compose(props){
     const {currentUser} = useAuth();
     const [requestType, setRequestType] = useState('');
@@ -11,6 +12,13 @@ function Compose(props){
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { userRole } = props.passingrole ? { userRole: props.passingrole } : {};
     const { userDepartment } = props.passingDepartment ? { userDepartment: props.passingDepartment } : {};
+    const requestTypes = [
+        "leave of absence",
+        "Grade Appeal",
+        "Course Withdrawal",
+        "Extension Request",
+        "Other"
+    ];
     const handleSubmit = async (e) => {
     e.preventDefault();
     if (!description.trim() || !db) return;
@@ -42,19 +50,19 @@ function Compose(props){
     } finally {
         setIsSubmitting(false);
     }};
-    return (<>
+    return (
+        <div id="compose">
         {userRole === 'student' ? (
         <div>
         <h2>Compose a New Request</h2>
         <form onSubmit={handleSubmit}>
             <label>
                 Request Type:
-                <input
-                    type="text"
-                    value={requestType}
-                    onChange={(e) => setRequestType(e.target.value)}
-                    placeholder="Enter the type of request"
-                />
+                <select value={requestType} onChange={(e) => setRequestType(e.target.value)} required>
+                    {requestTypes.map((type) => (
+                        <option key={type} value={type}>{type}</option>
+                    ))}
+                </select>
             </label>
             <br />
             <label>
@@ -80,7 +88,7 @@ function Compose(props){
             <Outlet />
         </div>
         )}
-        </>
+        </div>
     );
 }
 export default Compose;

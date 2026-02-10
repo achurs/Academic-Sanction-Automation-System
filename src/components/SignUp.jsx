@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
 import { db } from '../config/firebase.jsx';
 import { doc, setDoc } from 'firebase/firestore';
+import '../style/SignUp.css';
 function SignUp() {
     const DEPARTMENT = ["CSE", "BT", "MECH", "CIVIL"];
     const [email, setEmail] = useState('');
@@ -44,7 +45,7 @@ function SignUp() {
     };
 
     return (
-        <div>
+        <div id="signup">
             <h2>Sign Up</h2>
             <form onSubmit={handleSignUp}>
                 <input 

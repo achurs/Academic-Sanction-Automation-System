@@ -4,6 +4,7 @@ import { collection,query,getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { jsPDF } from "jspdf";
 import { autoTable } from "jspdf-autotable";
+import "../style/Pdf.css";
 function Pdf(props) {
     const { passingcurrentuser } = props;
     const [requests, setRequests] = useState([]);
@@ -110,7 +111,7 @@ function Pdf(props) {
     }
 
     return (
-        <div>
+        <div id="pdf-table">
             <h1>Consolidated Request Summary</h1>
             <label>
                 Filter by Status:

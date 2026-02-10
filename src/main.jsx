@@ -7,7 +7,6 @@ import { AuthProvider } from './components/AuthContext.jsx'
 import SignUp from './components/SignUp.jsx'
 import SignIn from './components/SignIn.jsx'
 import AdminDashboard from './components/AdminDashboard.jsx'
-import Home from './components/Home.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

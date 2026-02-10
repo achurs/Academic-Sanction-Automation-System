@@ -5,7 +5,6 @@ import { Navigate } from 'react-router-dom'
 import Home from './components/Home.jsx'
 function App() {
   const { currentUser } = useAuth()
-
   if (!currentUser) {
     return <Navigate to="/signin" />
   }

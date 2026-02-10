@@ -1,0 +1,107 @@
+/* Dashboard wrapper */
+#dashboard-view {
+    margin-top: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Heading */
+#dashboard-view h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Empty state text */
+#dashboard-view > p {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Requests container */
+#dashboard-view > div {
+    width: 100%;
+}
+
+/* Individual request row (table row look) */
+#dashboard-view > div > div {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr 2fr;
+    align-items: center;
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Request type */
+#dashboard-view h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Text cells */
+#dashboard-view p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Status badge */
+#dashboard-view p span {
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background: #e3e8ff;
+    color: #4a5bdc;
+}
+
+/* Action buttons container */
+#dashboard-view div > div > div {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+/* Approve button */
+#dashboard-view button:first-child {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+#dashboard-view button:first-child:hover {
+    background: #43a047;
+}
+
+/* Reject button */
+#dashboard-view button:last-child {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+#dashboard-view button:last-child:hover {
+    background: #c62828;
+}
+
+/* Responsive (stack rows) */
+@media (max-width: 768px) {
+    #dashboard-view > div > div {
+        grid-template-columns: 1fr;
+        row-gap: 0.5rem;
+    }
+
+    #dashboard-view div > div > div {
+        justify-content: flex-start;
+    }
+}
